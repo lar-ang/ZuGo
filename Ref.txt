@@ -1,0 +1,12 @@
+- amazon
+stackitorpackit@gmail.com  / 5150p893
+
+
+- parse
+https://parse.zugodo.com/apps/zugo/browser/_User
+https://parse.zugodo.com/
+
+admin / admin123!@#
+server url : https://parse.zugodo.com:8000/parse
+application id : 6IBGDADItrj9gPUM1QnTSy8ZqAv5aq1PQc02Qejm
+client key : zpdfTxPC1bW3e7CMthoUvZabk4msM3LuFNCfA6KT
