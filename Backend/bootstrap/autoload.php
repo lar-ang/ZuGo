@@ -15,7 +15,7 @@ define('LARAVEL_START', microtime(true));
 */
 
 require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/../vendor/parse/parse-sdk/autoload.php';
+require __DIR__.'/../vendor/parse/php-sdk/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
