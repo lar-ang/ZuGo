@@ -130,7 +130,8 @@
           });
 		  return;
         }
-		if ($('#username').val() != 'admin' && $('#username').val() != 'brunolens@outlook.com'){
+		if ($('#username').val() != 'admin' && $('#username').val() != 'brunolens@outlook.com' && 
+    $('#username').val() != 'daw.mag@yandex.com'){
           new PNotify({
               title: 'LogIn Error',
               text: 'User Name or Password is required',

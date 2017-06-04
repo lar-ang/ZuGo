@@ -28,11 +28,17 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {
-      $app_id = 'aa2b651a-30b7-47b8-893f-82d2d66a1125';
+      $app_id = '6IBGDADItrj9gPUM1QnTSy8ZqAv5aq1PQc02Qejm';
+      $rest_key = 'YIqJPFN2DXuokBGeWYUYKRwxqLPbZO4xpAZkqrIF';
+      $master_key = 'iEo8n2Cpr5R3V5TFp0hYUiRHzw1oI2Z8vOfLYNVc';
+      ParseClient::initialize( $app_id, $rest_key, $master_key );
+      ParseClient::setServerURL('https://parse.zugodo.com:8000/','parse');
+
+/*      $app_id = 'aa2b651a-30b7-47b8-893f-82d2d66a1125';
       $rest_key = '09b883b0-12d2-4039-ac18-e55977982a30';
       $master_key = 'fcf554e7-774c-4651-a7b2-94d244614459';
       ParseClient::initialize( $app_id, $rest_key, $master_key );
-      ParseClient::setServerURL('https://parse.jimb.tk:20004/','parse');
+      ParseClient::setServerURL('https://parse.jimb.tk:20004/','parse');*/
     }
 
     public function savedata(Request $request)
@@ -133,7 +139,7 @@ class Controller extends BaseController
         $data[]=$one;
       }
 
-      return view('data', ['data'=>$data]);
+      return view('data1', ['data'=>$data]);
     }
 
 }
