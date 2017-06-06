@@ -92,7 +92,7 @@
                           <td>adType</td>
                           <td>adURL</td>
                           <td>adImage</td>
-                          <td>adTime</td>
+                          <td>Point</td>
                           <td>action</td>
                         </tr>
                       </thead>
