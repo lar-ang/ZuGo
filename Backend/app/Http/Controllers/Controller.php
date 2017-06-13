@@ -41,7 +41,44 @@ class Controller extends BaseController
       ParseClient::setServerURL('https://parse.jimb.tk:20004/','parse');*/
     }
 
-    public function savedata(Request $request)
+    public function login(Request $request){
+      $uid = $request['uid'];
+      $pwd = $request['pwd'];
+      // $uid = 'brunolens@outlook.com';
+      // $pwd = 'test';
+      $user = null;
+      try {
+          $user = ParseUser::logIn($uid, $pwd);
+          // Do stuff after successful login.
+        } catch (ParseException $ex) {
+			echo "Error: " . $ex->getCode() . " " . $ex->getMessage();
+          $res['success'] = false;
+          return $res;
+        }
+        $res['success'] = true;
+        Session::put('user_verification', 'user_verification');
+        return $res;
+    }
+
+    public function getAdvertises() {
+      $query = new ParseQuery("ads");
+      // $query->equalTo("playerName", "Dan Stemkoski");
+      $objArray = $query->find();
+      $data = array();
+      foreach ($objArray as $obj) {
+        $one['id'] =  $obj->getObjectId();
+        $one['name'] =  $obj->name;
+        $one['adType'] =  $obj->adType;
+        $one['adImage'] =  ($obj->adImage!=null)?$obj->adImage->getURL():'';
+        $one['adURL'] =  $obj->adURL;
+        $one['adTime'] =  $obj->adTime;
+        $data[]=$one;
+      }
+      
+      return view('advertise', ['data'=>$data]);
+    }
+
+    public function addAdvertise(Request $request)
     {
 
       $input = $request->input();
@@ -92,7 +129,7 @@ class Controller extends BaseController
       // return redirect('/data');
     }
 
-    public function removedata(Request $request){
+    public function removeAdvertise(Request $request){
       $input = $request->input();
       $query = new ParseQuery("ads");
       try {
@@ -105,41 +142,85 @@ class Controller extends BaseController
       return $res;
     }
 
-    public function login(Request $request){
-      $uid = $request['uid'];
-      $pwd = $request['pwd'];
-      // $uid = 'brunolens@outlook.com';
-      // $pwd = 'test';
-      $user = null;
-      try {
-          $user = ParseUser::logIn($uid, $pwd);
-          // Do stuff after successful login.
-        } catch (ParseException $ex) {
-			echo "Error: " . $ex->getCode() . " " . $ex->getMessage();
-          $res['success'] = false;
-          return $res;
-        }
-        $res['success'] = true;
-        Session::put('user_verification', 'user_verification');
-        return $res;
-    }
-
-    public function getData(){
-      $query = new ParseQuery("ads");
-      // $query->equalTo("playerName", "Dan Stemkoski");
+    public function getUsers() {
+      $query = ParseUser::query();
+      $query->limit(1000);
       $objArray = $query->find();
       $data = array();
       foreach ($objArray as $obj) {
         $one['id'] =  $obj->getObjectId();
-        $one['name'] =  $obj->name;
-        $one['adType'] =  $obj->adType;
-        $one['adImage'] =  ($obj->adImage!=null)?$obj->adImage->getURL():'';
-        $one['adURL'] =  $obj->adURL;
-        $one['adTime'] =  $obj->adTime;
+        $one['displayName'] =  $obj->displayName;
+        $one['email'] =  $obj->username;
+        $one['Location'] = $obj->Location;
+        $one['verifiedAccount'] =  $obj->verifiedAccount;
         $data[]=$one;
       }
-
-      return view('data1', ['data'=>$data]);
+      
+      return view('user', ['data'=>$data]);
     }
+/*
+    public function addUser(Request $request)
+    {
+
+      $input = $request->input();
+      if ($input['id'] == '') {
+        $obj = new ParseObject("ads");
+      } else {
+        $query = new ParseQuery("ads");
+        try {
+          $obj = $query->get($input['id']);
+        } catch (ParseException $ex) {
+          return false;
+        }
+      }
+
+      $obj->set("name", $input['name']);
+      $obj->set("adType", $input['adType']*1);
+      $obj->set("adURL",  $input['adURL']);
+
+      $obj->set("adTime",  $input['adTime']*1);
+
+      if (!is_null($input['adFileData'])) {
+        $data = $input['adFileData'];
+        $img = $input['adFileData'];
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $fileData = base64_decode($img);
+        $fileName = 'photo.png';
+        file_put_contents($fileName, $fileData);
+        $img = Image::make($fileName)->save('temp.jpg');
+        $filesize = $img->filesize();
+        if ($filesize > 1000000) { // over 1M
+          $img->resize(540, 540/$img->width()*$img->height());
+        }
+
+	$parseFile = $obj->adImage;
+	if ($parseFile != null)
+		$parseFile->delete();
+	$parseFile = ParseFile::createFromData( file_get_contents( 'temp.jpg' ), "myfile.jpg" );
+	$parseFile->save();
+	$obj->set("adImage",  $parseFile);
+      }
+
+      // var_dump(1);
+      $obj->save();
+
+      $res['success'] = true;
+      return $res;
+      // return redirect('/data');
+    }
+
+    public function removeUser(Request $request){
+      $input = $request->input();
+      $query = new ParseQuery("ads");
+      try {
+        $obj = $query->get($input['id']);
+      } catch (ParseException $ex) {
+        return false;
+      }
+      $obj->destroy();
+      $res['success'] = true;
+      return $res;
+    }*/
 
 }

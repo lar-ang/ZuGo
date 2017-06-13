@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <title>ZuGo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Preview page of Metronic Admin Theme #1 for managed datatable samples" name="description">
+  <meta content="" name="author">
 
-    <title></title>
+  <!-- BEGIN GLOBAL MANDATORY STYLES -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="./assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+  <!-- END GLOBAL MANDATORY STYLES -->
+  <!-- BEGIN PAGE LEVEL PLUGINS -->
+  <link href="./assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css">
+  <!-- END PAGE LEVEL PLUGINS -->
+  <!-- BEGIN THEME GLOBAL STYLES -->
+  <link href="./assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css">
+  <link href="./assets/global/css/plugins.min.css" rel="stylesheet" type="text/css">
+  <!-- END THEME GLOBAL STYLES -->
+  <!-- BEGIN THEME LAYOUT STYLES -->
+  <link href="./assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css">
+  <link href="./assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color">
+  <link href="./assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css">
+  <!-- END THEME LAYOUT STYLES -->
+  <link rel="shortcut icon" href="favicon.ico"> 
 
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <!-- <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet"> -->
-    <!-- Datatables -->
-    <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+
     <link href="css/login.css" rel="stylesheet" type="text/css"/>
     <link href="css/components-rounded.css" id="style_components" rel="stylesheet" type="text/css"/>
     <link href="vendors/pnotify/dist/pnotify.css" rel="stylesheet">
@@ -38,193 +47,223 @@
         height: 50px;
     	}
     </style>
-  </head>
 
-  <body class="nav-md login">
-    <div class="logo" style="padding: 40px 15px;">
-      	<img src="img/logo.png" alt="" style="width:60px;height:60px;"/>
-    </div>
-    <div class="content login-page" hidden>
-        	<!-- BEGIN LOGIN FORM -->
-        	<form class="login-form" action="#" method="post">
-        		<h3 class="form-title">Sign In</h3>
-        		<div class="alert alert-danger display-hide">
-        			<button class="close" data-close="alert" onclick="$('.alert').addClass(display-hide)"></button>
-        			<span>
-        			Enter any username and password. </span>
-        		</div>
-        		<div class="form-group">
-        			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        			<label class="control-label visible-ie8 visible-ie9">Username</label>
-        			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" id="username"/>
-        		</div>
-        		<div class="form-group">
-        			<label class="control-label visible-ie8 visible-ie9">Password</label>
-        			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" id="password"/>
-        		</div>
-        		<div class="form-actions">
-        			<button type="button" class="btn btn-success uppercase login-btn" onclick="login();">Login</button>
-        		</div>
-        	</form>
-        	<!-- END LOGIN FORM -->
-        </div>
+</head>
 
-    <div class="table-page" >
-      <div class="" style="margin: 20px;">
-        <!-- page content -->
-        <div class="" role="main">
-          <div class="">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel" >
-                  <div class="x_title">
-                    <h2>Own ADs<small></small></h2>
-
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <button class="btn btn-success" style="width: 150px;margin: 10px 0px 20px;" type="button" name="button" onclick="showEditModal();">ADD</button>
-                    <table id="datatable" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>adType</td>
-                          <td>adURL</td>
-                          <td>adImage</td>
-                          <td>Point</td>
-                          <td>action</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($data as $one)
-                        <tr class="{{$one['id']}}">
-                          <td >{{$one['name']}}</td>
-                          <td>{{($one['adType']==1)?'Full Screen':'320*200'}}</td>
-                          <td>{{$one['adURL']}}</td>
-                          <td style="text-align:center">
-                            <a href="{{$one['adImage']}}"><img src="{{$one['adImage']}}" alt="" style="height:30px;"></a>
-                          </td>
-                          <td>{{$one['adTime']}}</td>
-                          <td>
-                            <a class="btn menu-icon vd_yellow" data-placement="top" data-toggle="tooltip" data-original-title="edit" onclick="editItem('{{$one['id']}}')"> <i class="fa fa-pencil"></i> </a>
-                            <a class="btn menu-icon vd_red " data-placement="top" data-toggle="tooltip" data-original-title="delete" onclick="removeItem('{{$one['id']}}')"><i class="fa fa-times"></i> </a>
-                          </td>
-                        </tr>
-                        @endforeach
-
-                      </tbody>
-                    </table>
-                  </div>
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="{{ action('Controller@getAdvertises') }}">
+                        <img src="img/logo.png" alt="logo" class="logo-default" height="30px" width="40px" style="margin:10px 0px"> </a>
+<!--                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>-->
                 </div>
-              </div>
-
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+<!--                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>-->
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                
+                <!-- END TOP NAVIGATION MENU -->
             </div>
-          </div>
+            <!-- END HEADER INNER -->
         </div>
-        <!-- /page content -->
+        <!-- END HEADER -->
 
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <li class="heading">
+                            <h3 class="uppercase">ZuGo</h3>
+                        </li>
+                        <li class="nav-item @yield('User-Selected-Class')">
+                            <a href="{{ action('Controller@getUsers') }}" class="nav-link nav-toggle">
+                                <i class="fa fa-user"></i>
+                                <span class="title">User</span>
+                                @yield('User-Selected-Span')
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('Advertise-Selected-Class')">
+                            <a href="{{ action('Controller@getAdvertises') }}" class="nav-link nav-toggle">
+                                <i class="fa fa-image"></i>
+                                <span class="title">Advertise</span>
+                                @yield('Advertise-Selected-Span')
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content" style="min-height: 1432px;">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+
+                    <!-- END THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <h1 class="page-title"> 
+                        @yield('title')
+                    </h1>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @yield('content')
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2017 © ZuGo
+                <a target="_blank" href="http://keenthemes.com">Me</a>
+            </div>
+            <div class="scroll-to-top" style="display: none;">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+    </div>
+
+    <!-- Dialog -->
+    <div id="progressDlg" class="modal fade in" role="basic" style="padding-right: 17px;z-index:9999999999999;" [class.show]="appState.get('isLoading') > 0">
+      <div class="modal-backdrop fade in" style="height: 100%;opacity:0.28;background-color:rgb(253, 129, 163) !important;"></div>
+      <div class="modal-dialog" style="width:45px;height:100%;margin:auto;">
+        <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true" style="font-size: 44px;top: 50%;position: absolute;color: rgb(253, 129, 163);"></i>
       </div>
-    </div>
-    <div class="copyright">
-
-    </div>
-    <div id="progressDlg" class="modal fade in" role="basic" style="padding-right: 17px;z-index:9999999999999;" [class.show] = "appState.get('isLoading') > 0">
-     <div class="modal-backdrop fade in" style="height: 100%;opacity:0.28;background-color:rgb(253, 129, 163) !important;"></div>
-     <div class="modal-dialog" style="width:45px;height:100%;margin:auto;">
-       <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true" style="font-size: 44px;top: 50%;position: absolute;color: rgb(253, 129, 163);"></i>
-     </div>
     </div>
 
     <div id="dlg_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-mm" style="min-width: 1000px!important;">
-    <form id="form_modal" class="form-horizontal form-label-left" novalidate method="POST" enctype="multipart/form-data" action="/savedata">
-      {{ csrf_field() }}
-      <input type="hidden" id="id" name="id" value="">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title" id="title_modal">Title</h4>
-        </div>
-        <div class="modal-body">
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
-            </label>
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <input id="name" name="name" class="form-control col-md-7 col-xs-12" required="required" type="text">
+      <div class="modal-dialog modal-mm" style="min-width: 1000px!important;">
+        <form id="form_modal" class="form-horizontal form-label-left" novalidate method="POST" enctype="multipart/form-data" action="/addAdvertise">
+          {{ csrf_field() }}
+          <input type="hidden" id="id" name="id" value="">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+              <h4 class="modal-title" id="title_modal">Title</h4>
             </div>
-          </div>
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">adType <span class="required">*</span>
-            </label>
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <!-- <input id="adType" name="adType" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
-              <select class="form-control col-md-7 col-xs-12" id="adType" name="adType" onchange="onSelectType();">
-                <option value=1>Full Screen</option>
-                <option value=2>320*200</option>
-              </select>
-            </div>
-          </div>
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">adURL <span class="required">*</span>
-            </label>
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <input id="adURL" name="adURL" class="form-control col-md-7 col-xs-12" required="required" type="text">
-            </div>
-          </div>
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adTime">adTime <span class="required">*</span>
-            </label>
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <!-- <input id="adTime" name="adTime" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
-              <select class="form-control col-md-7 col-xs-12" id="adTime" name="adTime">
-                <option value=10>10</option>
-                <option value=20>20</option>
-                <option value=30>30</option>
-                <option value=40>40</option>
-                <option value=50>50</option>
-                <option value=60>60</option>
-              </select>
-            </div>
-          </div>
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">adImage <span class="required">*</span>
-            </label>
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <!-- <input id="car_detail" class="form-control col-md-7 col-xs-12" name="car_detail" required="required" type="text"> -->
-              <!-- <img id="previewImg" src="" alt="" style="width: 100%; display: block;"> -->
-              <input type="file"  id="file" name="file" accept="image/*">
-            </div>
-          </div>
-          <div class="item form-group">
-            <div class="container cropper">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="img-container">
-                    <img id="image" src="" alt="Picture">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="docs-preview clearfix">
-                    <div class="img-preview preview-lg" style="margin:50% auto;float: none;"></div>
-                  </div>
+            <div class="modal-body">
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                  </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <input id="name" name="name" class="form-control col-md-7 col-xs-12" required="required" type="text">
                 </div>
               </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Type <span class="required">*</span>
+                  </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <!-- <input id="adType" name="adType" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
+                  <select class="form-control col-md-7 col-xs-12" id="adType" name="adType" onchange="onSelectType();">
+                      <option value=1>Full Screen</option>
+                      <option value=2>320*200</option>
+                    </select>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">URL <span class="required">*</span>
+                  </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <input id="adURL" name="adURL" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adTime">Point <span class="required">*</span>
+                  </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <!-- <input id="adTime" name="adTime" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
+                  <select class="form-control col-md-7 col-xs-12" id="adTime" name="adTime">
+                      <option value=10>10</option>
+                      <option value=20>20</option>
+                      <option value=30>30</option>
+                      <option value=40>40</option>
+                      <option value=50>50</option>
+                      <option value=60>60</option>
+                    </select>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Image <span class="required">*</span>
+                  </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <!-- <input id="car_detail" class="form-control col-md-7 col-xs-12" name="car_detail" required="required" type="text"> -->
+                  <!-- <img id="previewImg" src="" alt="" style="width: 100%; display: block;"> -->
+                  <input type="file" id="file" name="file" accept="image/*">
+                </div>
+              </div>
+              <div class="item form-group">
+                <div class="container cropper">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="img-container">
+                        <img id="image" src="" alt="Picture">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="docs-preview clearfix">
+                        <div class="img-preview preview-lg" style="margin:50% auto;float: none;"></div>
+                      </div>
+                    </div>
+                  </div>
 
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btn_ok" onclick="saveItem()">OK</button>
+              </div>
             </div>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="btn_ok" onclick = "saveItem()">OK</button>
+        </form>
         </div>
       </div>
-    </form>
-  </div>
-</div>
-
-
-
 
     <!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>
@@ -261,7 +300,6 @@
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="js/metronic.js" type="text/javascript"></script>
-    <script src="js/layout.js" type="text/javascript"></script>
     <script src="js/login.js" type="text/javascript"></script>
     <script src="js/jquery.confirm.js" type="text/javascript"></script>
 
@@ -407,7 +445,7 @@
                       //  initDataTable();
       }
 
-      function editItem(id){
+      function editAdvertise(id){
           $('#dlg_modal').modal('show');
           $("#title_modal").text("Edit");
           $("#id").val(id);
@@ -419,8 +457,9 @@
           onSelectType();
           $("#image").cropper('replace', $($("."+id+" img")).attr('src'));
       }
+
       function initModal(){
-        $("#title_modal").text("ADD");
+        $("#title_modal").text("ADD ADVERTISEMENT");
         $("#id").val('');
         $("#name").val('');
         $("#adURL").val('');
@@ -435,20 +474,20 @@
         // $("#image").attr('src', '');
       }
 
-      function removeItem(id){
+      function removeAdvertise(id){
         $.confirm({
         text: "Do you want to remove?",
         confirm: function(button) {
           showProgress();
           $.ajax({
-            url: "{{ url('/removedata') }}",
+            url: "{{ url('/removeAdvertise') }}",
             data: {
               'id': id
             },
             method: 'get',
             success: function(res) {
               if (res.success) {
-                window.location = "{{url('/data')}}";
+                window.location = "{{url('/advertise')}}";
               } else {
                 new PNotify({
                   title: 'Remove Data Error',
@@ -473,6 +512,97 @@
         });
 
       }
+
+/* Temp     function editUser(id){
+          $('#dlg_modal').modal('show');
+          $("#title_modal").text("Edit");
+          $("#id").val(id);
+          $("#name").val($($("."+id).children()[0]).text());
+          $("#adType").val($($("."+id).children()[1]).text());
+          $("#adURL").val($($("."+id).children()[2]).text());
+          $("#adTime").val($($("."+id).children()[4]).text());
+          $("#file").val('');
+          onSelectType();
+          $("#image").cropper('replace', $($("."+id+" img")).attr('src'));
+      }
+
+      function removeUser(id){
+        $.confirm({
+        text: "Do you want to remove?",
+        confirm: function(button) {
+          showProgress();
+          $.ajax({
+            url: "{{ url('/removeUser') }}",
+            data: {
+              'id': id
+            },
+            method: 'get',
+            success: function(res) {
+              if (res.success) {
+                window.location = "{{url('/user')}}";
+              } else {
+                new PNotify({
+                  title: 'Remove Data Error',
+                  text: 'Please check your Internet status.',
+                  type: 'error',
+                  styling: 'bootstrap3'
+                });
+                hideProgress();
+              }
+            },
+            error: function() {
+              new PNotify({
+                title: 'Remove Data Error',
+                text: 'Please check your Internet status.',
+                type: 'error',
+                styling: 'bootstrap3'
+              });
+            },
+          });
+
+        }
+        });
+
+      }
+
+      function verifyUser(id) {
+        showProgress();
+        $.ajax({
+                url: "{{ url('/verifyUser') }}",
+                data: {
+                        '_token': '{{ csrf_token() }}',
+                        'id': $('#id').val(),
+                        'name': $('#name').val(),
+                        'adType': $('#adType').val(),
+                        'adURL': $('#adURL').val(),
+                        'adTime': $('#adTime').val(),
+                        'adFileData': fileData,
+                },
+                method: 'post',
+                success: function(res) {
+                  if (res.success) {
+                    window.location = "{{url('/advertise')}}";
+                  } else {
+                    new PNotify({
+                      title: 'Save Data Error',
+                      text: 'Please check your Internet status.',
+                      type: 'error',
+                      styling: 'bootstrap3'
+                    });
+                    hideProgress();
+                  }
+                },
+                error: function() {
+                  new PNotify({
+                      title: 'Save Data Error',
+                      text: 'Please check your Internet status.',
+                      type: 'error',
+                      styling: 'bootstrap3'
+                  });
+                  hideProgress();
+                },
+        });
+      }*/
 
       </script>
       <script>
@@ -750,7 +880,7 @@
           return;
         }
         $.ajax({
-                url: "{{ url('/savedata') }}",
+                url: "{{ url('/addAdvertise') }}",
                 data: {
                         '_token': '{{ csrf_token() }}',
                         'id': $('#id').val(),
@@ -763,7 +893,7 @@
                 method: 'post',
                 success: function(res) {
                   if (res.success) {
-                    window.location = "{{url('/data')}}";
+                    window.location = "{{url('/advertise')}}";
                   } else {
                     new PNotify({
                       title: 'Save Data Error',
@@ -788,6 +918,40 @@
 
 
     </script>
-    <!-- /Datatables -->
-  </body>
+    <!-- /Datatables -->    
+
+    <!--[if lt IE 9]>
+<script src="./assets/global/plugins/respond.min.js"></script>
+<script src="./assets/global/plugins/excanvas.min.js"></script> 
+<script src="./assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+<!--    <script src="./assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>-->
+    <script src="./assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="./assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="./assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="./assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="./assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="./assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="./assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="./assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+
+
+</body>
 </html>

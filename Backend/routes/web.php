@@ -20,11 +20,9 @@ Route::post('/login', [
 ]);
 
 Route::group(['middleware' => 'guest'], function() {
-
-    Route::post('/savedata', 'Controller@savedata');
-
-    Route::get('/removedata', 'Controller@removedata');
-
-
+    Route::get('/user', 'Controller@getUsers');
+    Route::get('/advertise', 'Controller@getAdvertises');
+    
+    Route::post('/addAdvertise', 'Controller@addAdvertise');
+    Route::get('/removeAdvertise', 'Controller@removeAdvertise');
 });
-Route::get('/data', 'Controller@getData');

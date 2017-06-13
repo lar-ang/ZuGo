@@ -47,7 +47,7 @@
      </div>
     </div>
     <div class="logo">
-      	<img src="img/icon_logo.png" alt=""/>
+      	<img src="img/logo.png" alt=""/>
     </div>
     <div class="content login-page" >
         	<!-- BEGIN LOGIN FORM -->
@@ -156,7 +156,7 @@
                     // for (var i = 0; i < res.data.length; i++) {
                     //   importData(res.data[i]);
                     // }
-                    window.location = "{{ config('app.url').'/data' }}";
+                    window.location = "{{ config('app.url').'/advertise' }}";
                   } else {
                     new PNotify({
                         title: 'LogIn Error',
