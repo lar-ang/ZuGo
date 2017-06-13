@@ -362,7 +362,7 @@
 
       function editAdvertise(id){
           $('#advertiseModal').modal('show');
-          $("#title_modal").text("Edit");
+          $("#title_modal").text("Edit advertisements");
           $("#id").val(id);
           $("#name").val($($("."+id).children()[0]).text());
           $("#adType").val($($("."+id).children()[1]).text());
@@ -429,12 +429,12 @@
       }
 
       function editUser(id) {
-          $("#title_modal").text("Edit");
+          $("#title_modal").text("Edit points & verification");
           $("#id").val(id);
           $("#name").val($($("."+id).children()[0]).text());
           $("#email").val($($("."+id).children()[1]).text());
           $("#location").val($($("."+id).children()[2]).text());
-          $("#point").val($($("."+id).children()[3]).text());
+          $("#point").val(+$($("."+id).children()[3]).text());
           $("#verification").prop('checked', $($("."+id).children()[4]).text().includes('Verified'));
           $('#userModal').modal('show');
       }
