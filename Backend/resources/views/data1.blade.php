@@ -84,7 +84,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <button class="btn btn-success" style="width: 150px;margin: 10px 0px 20px;" type="button" name="button" onclick="showEditModal();">ADD</button>
+                    <button class="btn btn-success" style="width: 150px;margin: 10px 0px 20px;" type="button" name="button" onclick="showAdvertiseModal();">ADD</button>
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -136,7 +136,7 @@
      </div>
     </div>
 
-    <div id="dlg_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="advertiseModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-mm" style="min-width: 1000px!important;">
     <form id="form_modal" class="form-horizontal form-label-left" novalidate method="POST" enctype="multipart/form-data" action="/savedata">
       {{ csrf_field() }}
@@ -276,7 +276,7 @@
       	Login.init();
         initDataTable();
 
-        $(document).on('shown.bs.modal','#dlg_modal', function () {
+        $(document).on('shown.bs.modal','#advertiseModal', function () {
             // alert($(".img-container").width());
             $("#image").one().cropper('init');
           })
@@ -334,8 +334,8 @@
         $('.login-page').hide();
       }
 
-      function showEditModal(){
-        $('#dlg_modal').modal('show');
+      function showAdvertiseModal(){
+        $('#advertiseModal').modal('show');
         initModal();
       }
 
@@ -408,7 +408,7 @@
       }
 
       function editItem(id){
-          $('#dlg_modal').modal('show');
+          $('#advertiseModal').modal('show');
           $("#title_modal").text("Edit");
           $("#id").val(id);
           $("#name").val($($("."+id).children()[0]).text());

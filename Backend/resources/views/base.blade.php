@@ -178,92 +178,7 @@
       </div>
     </div>
 
-    <div id="dlg_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-mm" style="min-width: 1000px!important;">
-        <form id="form_modal" class="form-horizontal form-label-left" novalidate method="POST" enctype="multipart/form-data" action="/addAdvertise">
-          {{ csrf_field() }}
-          <input type="hidden" id="id" name="id" value="">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                </button>
-              <h4 class="modal-title" id="title_modal">Title</h4>
-            </div>
-            <div class="modal-body">
-              <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
-                  </label>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <input id="name" name="name" class="form-control col-md-7 col-xs-12" required="required" type="text">
-                </div>
-              </div>
-              <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Type <span class="required">*</span>
-                  </label>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <!-- <input id="adType" name="adType" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
-                  <select class="form-control col-md-7 col-xs-12" id="adType" name="adType" onchange="onSelectType();">
-                      <option value=1>Full Screen</option>
-                      <option value=2>320*200</option>
-                    </select>
-                </div>
-              </div>
-              <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">URL <span class="required">*</span>
-                  </label>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <input id="adURL" name="adURL" class="form-control col-md-7 col-xs-12" required="required" type="text">
-                </div>
-              </div>
-              <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adTime">Point <span class="required">*</span>
-                  </label>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <!-- <input id="adTime" name="adTime" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
-                  <select class="form-control col-md-7 col-xs-12" id="adTime" name="adTime">
-                      <option value=10>10</option>
-                      <option value=20>20</option>
-                      <option value=30>30</option>
-                      <option value=40>40</option>
-                      <option value=50>50</option>
-                      <option value=60>60</option>
-                    </select>
-                </div>
-              </div>
-              <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Image <span class="required">*</span>
-                  </label>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <!-- <input id="car_detail" class="form-control col-md-7 col-xs-12" name="car_detail" required="required" type="text"> -->
-                  <!-- <img id="previewImg" src="" alt="" style="width: 100%; display: block;"> -->
-                  <input type="file" id="file" name="file" accept="image/*">
-                </div>
-              </div>
-              <div class="item form-group">
-                <div class="container cropper">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <div class="img-container">
-                        <img id="image" src="" alt="Picture">
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="docs-preview clearfix">
-                        <div class="img-preview preview-lg" style="margin:50% auto;float: none;"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="btn_ok" onclick="saveItem()">OK</button>
-              </div>
-            </div>
-        </form>
-        </div>
-      </div>
+    @yield('dialog')
 
     <!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>
@@ -314,7 +229,7 @@
       	Login.init();
         initDataTable();
 
-        $(document).on('shown.bs.modal','#dlg_modal', function () {
+        $(document).on('shown.bs.modal','#advertiseModal', function () {
             // alert($(".img-container").width());
             $("#image").one().cropper('init');
           })
@@ -372,8 +287,8 @@
         $('.login-page').hide();
       }
 
-      function showEditModal(){
-        $('#dlg_modal').modal('show');
+      function showAdvertiseModal(){
+        $('#advertiseModal').modal('show');
         initModal();
       }
 
@@ -446,7 +361,7 @@
       }
 
       function editAdvertise(id){
-          $('#dlg_modal').modal('show');
+          $('#advertiseModal').modal('show');
           $("#title_modal").text("Edit");
           $("#id").val(id);
           $("#name").val($($("."+id).children()[0]).text());
@@ -513,17 +428,15 @@
 
       }
 
-/* Temp     function editUser(id){
-          $('#dlg_modal').modal('show');
+      function editUser(id) {
           $("#title_modal").text("Edit");
           $("#id").val(id);
           $("#name").val($($("."+id).children()[0]).text());
-          $("#adType").val($($("."+id).children()[1]).text());
-          $("#adURL").val($($("."+id).children()[2]).text());
-          $("#adTime").val($($("."+id).children()[4]).text());
-          $("#file").val('');
-          onSelectType();
-          $("#image").cropper('replace', $($("."+id+" img")).attr('src'));
+          $("#email").val($($("."+id).children()[1]).text());
+          $("#location").val($($("."+id).children()[2]).text());
+          $("#point").val($($("."+id).children()[3]).text());
+          $("#verification").prop('checked', $($("."+id).children()[4]).text().includes('Verified'));
+          $('#userModal').modal('show');
       }
 
       function removeUser(id){
@@ -539,10 +452,17 @@
             method: 'get',
             success: function(res) {
               if (res.success) {
+                new PNotify({
+                  title: 'User Deleted',
+                  text: 'User successfully deleted',
+                  type: 'success',
+                  styling: 'bootstrap3'
+                });
+                hideProgress();
                 window.location = "{{url('/user')}}";
               } else {
                 new PNotify({
-                  title: 'Remove Data Error',
+                  title: 'Delete User Error',
                   text: 'Please check your Internet status.',
                   type: 'error',
                   styling: 'bootstrap3'
@@ -552,7 +472,7 @@
             },
             error: function() {
               new PNotify({
-                title: 'Remove Data Error',
+                title: 'Delete User Error',
                 text: 'Please check your Internet status.',
                 type: 'error',
                 styling: 'bootstrap3'
@@ -564,45 +484,6 @@
         });
 
       }
-
-      function verifyUser(id) {
-        showProgress();
-        $.ajax({
-                url: "{{ url('/verifyUser') }}",
-                data: {
-                        '_token': '{{ csrf_token() }}',
-                        'id': $('#id').val(),
-                        'name': $('#name').val(),
-                        'adType': $('#adType').val(),
-                        'adURL': $('#adURL').val(),
-                        'adTime': $('#adTime').val(),
-                        'adFileData': fileData,
-                },
-                method: 'post',
-                success: function(res) {
-                  if (res.success) {
-                    window.location = "{{url('/advertise')}}";
-                  } else {
-                    new PNotify({
-                      title: 'Save Data Error',
-                      text: 'Please check your Internet status.',
-                      type: 'error',
-                      styling: 'bootstrap3'
-                    });
-                    hideProgress();
-                  }
-                },
-                error: function() {
-                  new PNotify({
-                      title: 'Save Data Error',
-                      text: 'Please check your Internet status.',
-                      type: 'error',
-                      styling: 'bootstrap3'
-                  });
-                  hideProgress();
-                },
-        });
-      }*/
 
       </script>
       <script>
@@ -839,7 +720,7 @@
         }
       }
 
-      function saveItem(){
+      function saveAdvertise(){
         error = '';
         if ($('#name').val() == '') {
           error = 'Name is required field.';
@@ -871,7 +752,7 @@
         var fileData = $('#image').cropper('getCroppedCanvas').toDataURL();
         if (fileData.length > 2000000) {
           new PNotify({
-            title: 'Save Data Error',
+            title: 'Save Advertise Error',
             text: 'Your File Size is too big for upload. Please Resize',
             type: 'error',
             styling: 'bootstrap3'
@@ -880,7 +761,7 @@
           return;
         }
         $.ajax({
-                url: "{{ url('/addAdvertise') }}",
+                url: "{{ url('/saveAdvertise') }}",
                 data: {
                         '_token': '{{ csrf_token() }}',
                         'id': $('#id').val(),
@@ -896,7 +777,7 @@
                     window.location = "{{url('/advertise')}}";
                   } else {
                     new PNotify({
-                      title: 'Save Data Error',
+                      title: 'Save Advertise Error',
                       text: 'Please check your Internet status.',
                       type: 'error',
                       styling: 'bootstrap3'
@@ -906,10 +787,49 @@
                 },
                 error: function() {
                   new PNotify({
-                      title: 'Save Data Error',
+                      title: 'Save Advertise Error',
                       text: 'Please check your Internet status.',
                       type: 'error',
                       styling: 'bootstrap3'
+                  });
+                  hideProgress();
+                },
+        });
+      }
+
+      function saveUser(){
+        showProgress();
+        $.ajax({
+          url: "{{ url('/saveUser') }}",
+                data: {
+                  '_token': '{{ csrf_token() }}',
+                        'id': $('#id').val(),
+                        'name': $('#name').val(),
+                        'email': $('#email').val(),
+                        'location': $('#location').val(),
+                        'point': $('#point').val(),
+                        'verification': $('#verification').is(':checked'),
+                },
+                method: 'post',
+                success: function(res) {
+                  if (res.success) {
+                  window.location = "{{url('/user')}}";
+                } else {
+                  new PNotify({
+                    title: 'Save User Error',
+                    text: 'Please check your Internet status.',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                hideProgress();
+                  }
+                },
+                error: function() {
+                  new PNotify({
+                    title: 'Save User Error',
+                    text: 'Please check your Internet status.',
+                    type: 'error',
+                    styling: 'bootstrap3'
                   });
                   hideProgress();
                 },

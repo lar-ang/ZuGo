@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="btn-group">
-                <button id="sample_editable_1_new" class="btn sbold green" onclick="showEditModal()">
+                <button id="sample_editable_1_new" class="btn sbold green" onclick="showAdvertiseModal()">
                         Add New
                     <i class="fa fa-plus"></i>
                 </button>
@@ -64,4 +64,86 @@
 </table>
 
 <!-- END EXAMPLE TABLE PORTLET-->
+@endsection
+
+@section('dialog')
+<div id="advertiseModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-mm" style="min-width: 1000px!important;">
+        <form id="form_modal" class="form-horizontal form-label-left" novalidate method="POST" enctype="multipart/form-data" action="/saveAdvertise">
+            {{ csrf_field() }}
+            <input type="hidden" id="id" name="id" value="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                    <h4 class="modal-title" id="title_modal">Title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                    </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <input id="name" name="name" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Type <span class="required">*</span>
+                    </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <!-- <input id="adType" name="adType" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
+                            <select class="form-control col-md-7 col-xs-12" id="adType" name="adType" onchange="onSelectType();">
+                        <option value=1>Full Screen</option>
+                        <option value=2>320*200</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">URL <span class="required">*</span>
+                    </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <input id="adURL" name="adURL" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adTime">Point <span class="required">*</span>
+                    </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <!-- <input id="adTime" name="adTime" class="form-control col-md-7 col-xs-12" required="required" type="number"> -->
+                            <input type="number" min="0" class="form-control col-md-7 col-xs-12" id="adTime" name="adTime">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Image <span class="required">*</span>
+                    </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <!-- <input id="car_detail" class="form-control col-md-7 col-xs-12" name="car_detail" required="required" type="text"> -->
+                            <!-- <img id="previewImg" src="" alt="" style="width: 100%; display: block;"> -->
+                            <input type="file" id="file" name="file" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <div class="container cropper">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="img-container">
+                                        <img id="image" src="" alt="Picture">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="docs-preview clearfix">
+                                        <div class="img-preview preview-lg" style="margin:50% auto;float: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="btn_ok" onclick="saveAdvertise()">OK</button>
+                    </div>
+                </div>
+        </form>
+        </div>
+    </div>
 @endsection

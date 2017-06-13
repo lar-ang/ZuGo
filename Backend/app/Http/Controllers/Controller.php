@@ -78,7 +78,7 @@ class Controller extends BaseController
       return view('advertise', ['data'=>$data]);
     }
 
-    public function addAdvertise(Request $request)
+    public function saveAdvertise(Request $request)
     {
 
       $input = $request->input();
@@ -145,82 +145,59 @@ class Controller extends BaseController
     public function getUsers() {
       $query = ParseUser::query();
       $query->limit(1000);
-      $objArray = $query->find();
+      $objArray = $query->find(true);
       $data = array();
       foreach ($objArray as $obj) {
         $one['id'] =  $obj->getObjectId();
         $one['displayName'] =  $obj->displayName;
-        $one['email'] =  $obj->username;
+        $one['email'] =  $obj->email;
         $one['Location'] = $obj->Location;
+        $one['point'] =  $obj->point;
         $one['verifiedAccount'] =  $obj->verifiedAccount;
         $data[]=$one;
       }
       
       return view('user', ['data'=>$data]);
     }
-/*
-    public function addUser(Request $request)
-    {
-
-      $input = $request->input();
-      if ($input['id'] == '') {
-        $obj = new ParseObject("ads");
-      } else {
-        $query = new ParseQuery("ads");
-        try {
-          $obj = $query->get($input['id']);
-        } catch (ParseException $ex) {
-          return false;
-        }
-      }
-
-      $obj->set("name", $input['name']);
-      $obj->set("adType", $input['adType']*1);
-      $obj->set("adURL",  $input['adURL']);
-
-      $obj->set("adTime",  $input['adTime']*1);
-
-      if (!is_null($input['adFileData'])) {
-        $data = $input['adFileData'];
-        $img = $input['adFileData'];
-        $img = str_replace('data:image/png;base64,', '', $img);
-        $img = str_replace(' ', '+', $img);
-        $fileData = base64_decode($img);
-        $fileName = 'photo.png';
-        file_put_contents($fileName, $fileData);
-        $img = Image::make($fileName)->save('temp.jpg');
-        $filesize = $img->filesize();
-        if ($filesize > 1000000) { // over 1M
-          $img->resize(540, 540/$img->width()*$img->height());
-        }
-
-	$parseFile = $obj->adImage;
-	if ($parseFile != null)
-		$parseFile->delete();
-	$parseFile = ParseFile::createFromData( file_get_contents( 'temp.jpg' ), "myfile.jpg" );
-	$parseFile->save();
-	$obj->set("adImage",  $parseFile);
-      }
-
-      // var_dump(1);
-      $obj->save();
-
-      $res['success'] = true;
-      return $res;
-      // return redirect('/data');
-    }
 
     public function removeUser(Request $request){
       $input = $request->input();
-      $query = new ParseQuery("ads");
       try {
-        $obj = $query->get($input['id']);
+        $result = ParseCloud::run("deleteUser", ["objectId" => $input['id']], true);
+        $res['success'] = true;
       } catch (ParseException $ex) {
-        return false;
+        $res['success'] = false;
       }
-      $obj->destroy();
+      return $res;
+    }
+
+    public function saveUser(Request $request)
+    {
+      $input = $request->input();
+      if ($input['id'] == '') {
+        $res['success'] = false;
+        return $res;
+      }
+
+      $query = ParseUser::query();
+      try {
+        $obj = $query->get($input['id'], true);
+      } catch (ParseException $ex) {
+        $res['success'] = false;
+        return $res;
+      }
+
+//      $obj->set("displayName", $input['name']);
+//      $obj->set("email", $input['email']);
+//      $obj->set("Location",  $input['location']);
+      $obj->set("point",  intval($input['point']));
+      $obj->set("verifiedAccount", ($input['verification'] == 'true'));
+      
+      // var_dump(1);
+      $obj->save(true);
+
       $res['success'] = true;
       return $res;
-    }*/
+    }
 
 }
